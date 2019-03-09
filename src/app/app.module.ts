@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { LoginComponent } from './login/login.component';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomeComponent,
-    LoginComponent //quando se cria um novo componente (@Component) deve ser associado como um angular modulo(@NgModule)
+    LoginComponent,
+    ErrorComponent //quando se cria um novo componente (@Component) deve ser associado como um angular modulo(@NgModule)
   ],
   imports: [
     BrowserModule,
