@@ -8,7 +8,7 @@ import { ErrorComponent } from './error/error.component';
 const routes: Routes = [
   { path: '', component: LoginComponent}, //path principal direciona para Login
   { path: 'login', component: LoginComponent},
-  { path: 'welcome', component: WelcomeComponent},
+  { path: 'welcome/:name', component: WelcomeComponent}, //passando name por parametro
   { path: '**', component: ErrorComponent} //para todas as outras rotas(**) apresenta a tela de erro 
 
 ];

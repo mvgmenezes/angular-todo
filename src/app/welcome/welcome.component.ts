@@ -1,6 +1,8 @@
 
 //import org.springframework.boot.SpringApplicaton
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 
 //@ComponentScan(value="com.mmenezes.springboot.web")
@@ -15,9 +17,12 @@ export class WelcomeComponent implements OnInit {
 
   //String message = "Some welcome message";
   message = 'Some welcome message';
+  nomeRecebido = ''
 
   //public WelcomeClassApplicaton() {
-  constructor() { }
+  constructor(private route:ActivatedRoute) { //para poder recuperar o parametro enviado na url
+
+  }
 
   //void init(){
   ngOnInit() : void {
@@ -25,6 +30,9 @@ export class WelcomeComponent implements OnInit {
     console.log(this.message);
     //System.out.println(message)
 
+    //recuperando o paramentro enviado na url
+    console.log(this.route.snapshot.params['name']);
+    this.nomeRecebido = this.route.snapshot.params['name']
   }
 
 }
