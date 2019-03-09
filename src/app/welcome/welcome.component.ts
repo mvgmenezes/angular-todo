@@ -20,6 +20,8 @@ export class WelcomeComponent implements OnInit {
   message = 'Some welcome message';
   nomeRecebido = ''
 
+  welcomeMessageFromService: string
+
   //public WelcomeClassApplicaton() {
   constructor(private route:ActivatedRoute,   //para poder recuperar o parametro enviado na url
     private welcomeDataService: WelcomeDataService) { //para acessar o JSON do Spring Boot
@@ -39,7 +41,25 @@ export class WelcomeComponent implements OnInit {
 
   getWelcomeMessage(){
     console.log('get the message');
-    this.welcomeDataService.executeHelloWorldBeanService().subscribe();
+    this.welcomeDataService.executeHelloWorldBeanService().subscribe(
+      response => this.handleSuccessfulResponse(response), 
+      error => this.handleErrorResponse(error)
+    );
+
+    console.log('last line ')
+  }
+
+  handleSuccessfulResponse(response){
+    this.welcomeMessageFromService = response.mensagem
+    //console.log(response);
+    //console.log(response.mensagem);
+  }
+
+  handleErrorResponse(error){
+    
+    //console.log(error);
+    //console.log(error.error.message);
+    this.welcomeMessageFromService = error.error.message
   }
 
 }
