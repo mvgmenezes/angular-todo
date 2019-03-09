@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { LoginComponent } from './login/login.component';
 import { ErrorComponent } from './error/error.component';
+import { ListTodosComponent } from './list-todos/list-todos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomeComponent,
     LoginComponent,
-    ErrorComponent //quando se cria um novo componente (@Component) deve ser associado como um angular modulo(@NgModule)
+    ErrorComponent,
+    ListTodosComponent //quando se cria um novo componente (@Component) deve ser associado como um angular modulo(@NgModule)
   ],
   imports: [
     BrowserModule,
