@@ -8,5 +8,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'todo'; //variavel que pode ser usada dentro do componente.html atraves de {{ title }}
-  message = 'Welcome to World'
+  message = 'Welcome to World'; // o nome de {{}} é interpolation
+  hello = 'Hello app';
 }
