@@ -3,6 +3,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { routerNgProbeToken } from '@angular/router/src/router_module';
+import { WelcomeDataService } from '../service/data/welcome-data.service';
 
 
 //@ComponentScan(value="com.mmenezes.springboot.web")
@@ -20,7 +21,8 @@ export class WelcomeComponent implements OnInit {
   nomeRecebido = ''
 
   //public WelcomeClassApplicaton() {
-  constructor(private route:ActivatedRoute) { //para poder recuperar o parametro enviado na url
+  constructor(private route:ActivatedRoute,   //para poder recuperar o parametro enviado na url
+    private welcomeDataService: WelcomeDataService) { //para acessar o JSON do Spring Boot
 
   }
 
@@ -33,6 +35,11 @@ export class WelcomeComponent implements OnInit {
     //recuperando o paramentro enviado na url
     console.log(this.route.snapshot.params['name']);
     this.nomeRecebido = this.route.snapshot.params['name']
+  }
+
+  getWelcomeMessage(){
+    console.log('get the message');
+    this.welcomeDataService.executeHelloWorldBeanService().subscribe();
   }
 
 }
