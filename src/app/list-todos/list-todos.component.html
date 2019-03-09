@@ -5,15 +5,17 @@
 
   <thead>
     <tr>
-      <th>id</th>
-      <th>descripton</th>
+      <th>Description</th>
+      <th>Target</th>
+      <th>Is Completed?</th>
     </tr>
   </thead>
   <tbody>
       <!-- for (Todo todo: todos) {-->
       <tr *ngFor="let todo of todos">
-          <td>{{todo.id}}</td>
           <td>{{todo.description}}</td>
-        </tr>
+          <td>{{todo.targetDate | date | uppercase | lowercase}}</td>
+          <td>{{todo.done}}</td>
+      </tr>
   </tbody>
 </table>
