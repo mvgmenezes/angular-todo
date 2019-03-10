@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 
-export class HelloWorldBean {
+export class MessageBean {
   constructor(public mensagem: string){}
 }
 
@@ -16,12 +16,12 @@ export class WelcomeDataService {
   ) { }
 
   executeHelloWorldBeanService(){
-    return this.http.get<HelloWorldBean>('http://localhost:8080/hello-world-bean');
+    return this.http.get<MessageBean>('http://localhost:8080/hello-world-bean');
     //console.log(this.http.get('http://localhost:8080/hello-world-bean'));
   }
 
   executeHelloWorldServiceWithPathVariable(name){
-    return this.http.get<HelloWorldBean>(`http://localhost:8080/hello-world-bean/path-variable/${name}`);
+    return this.http.get<MessageBean>(`http://localhost:8080/hello-world-bean/path-variable/${name}`);
   }
 
 }
