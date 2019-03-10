@@ -16,7 +16,8 @@ const routes: Routes = [
   { path: 'todos', component: ListTodosComponent , canActivate:[RouteGuardService] }, //canActive verifica, chama o servico que verifica se esta logado e pode acessar a URL
   { path: 'logout', component: LogoutComponent , canActivate:[RouteGuardService] }, //canActive verifica, chama o servico que verifica se esta logado e pode acessar a URL
   { path: 'todo/:id', component: TodoComponent , canActivate:[RouteGuardService] }, //canActive verifica, chama o servico que verifica se esta logado e pode acessar a URL    
-  
+  { path: 'todo', component: TodoComponent , canActivate:[RouteGuardService] }, //canActive verifica, chama o servico que verifica se esta logado e pode acessar a URL    
+
   { path: '**', component: ErrorComponent} //para todas as outras rotas(**) apresenta a tela de erro 
 
 ];

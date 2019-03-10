@@ -76,6 +76,11 @@ export class ListTodosComponent implements OnInit {
     this.router.navigate(['todo', id])
   }
 
+  createTodo(){
+    //direciona para a alteracao do todo
+    this.router.navigate(['todo'])
+  }
+
   refreshTodos(){
     this.todoDataService.retriveAllTodos('mmenezes').subscribe(
       response => {
