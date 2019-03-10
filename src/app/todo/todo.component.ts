@@ -20,6 +20,7 @@ export class TodoComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
+    this.todo = new Todo(this.id, "", false, new Date()); //como o metodo abaixo é assyncrono o objeto this.todo é vazio e o chrome no momento que carrega nao acha a propriedade que so é carregada no retorno do metodo abaixo. 
     this.todoService.retrieveTodo('mmenezes', this.id)
       .subscribe(
         data => this.todo = data

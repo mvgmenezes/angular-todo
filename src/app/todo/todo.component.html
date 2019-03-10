@@ -9,7 +9,11 @@
 
   <fieldset class="form-group">
     <label>description</label>
-    <input type="date" [(ngModel)]="todo.targetDate" class="form-control" name="targetDate" required="required">
+    <!-- como tenho que formatar o campo e nao é permitido formatar um evento o campo assume 
+    o seguinte padrao : [(ngModel)] contém o atributo [] e o evento () para conseguir formatar
+    basta separar o atribuito do evento ficando conforme abaixo.-->
+    <input type="date" [ngModel]="todo.targetDate | date:'yyyy-MM-dd'" 
+    (ngModelChange)="todo.targetDate = $event" class="form-control" name="targetDate" required="required">
   </fieldset>
 
   <button class="btn btn-success" (click)="saveTodo()">Save</button>
