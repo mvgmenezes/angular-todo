@@ -34,7 +34,7 @@ import { HttpIntercepterBasicAuthService } from './service/http/http-intercepter
     FormsModule // para usar o  [(ngModel)] no html é necessario esse import
   ],
   providers: [
-    //{provide: HTTP_INTERCEPTORS, useClass: HttpIntercepterBasicAuthService, multi: true} //criando o interceptor para as requisicoes http enviar o token gerado na classe de interceptor (http-intercepter-basic-auth-service.ts)
+    {provide: HTTP_INTERCEPTORS, useClass: HttpIntercepterBasicAuthService, multi: true} //criando o interceptor para as requisicoes http enviar o token gerado na classe de interceptor (http-intercepter-basic-auth-service.ts)
   ],
   bootstrap: [AppComponent]
 })

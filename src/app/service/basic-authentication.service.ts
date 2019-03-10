@@ -11,17 +11,6 @@ export class BasicAuthenticationService {
   
   constructor(private http: HttpClient) { }
 
-  autenticar(username, password) :boolean{
-    console.log('before ' + this.isUserLoggedIn());
-    if (username==="mmenezes" && password==="123"){
-      //salvando o usuario na session do browser
-      sessionStorage.setItem('authenticaterUser', username); //https://www.w3schools.com/jsref/prop_win_sessionstorage.asp
-      console.log('after ' + this.isUserLoggedIn());
-      return true;
-    }
-    return false;
-  }
-
   executeAuthenticationService(username, password){
 
     let basicAuthHeaderString = 'Basic ' + window.btoa(username + ':' + password);
@@ -38,13 +27,21 @@ export class BasicAuthenticationService {
         map(
           data => {
             sessionStorage.setItem('authenticaterUser', username); //https://www.w3schools.com/jsref/prop_win_sessionstorage.asp
+            sessionStorage.setItem('token', basicAuthHeaderString);
             return data;
           }
         )
       );
   }
 
-  
+  getAuthenticatedUser(){
+    return sessionStorage.getItem('authenticaterUser');
+  }
+  getAuthenticatedToken(){
+    if (this.getAuthenticatedUser())
+      return sessionStorage.getItem('token');
+  }
+
   isUserLoggedIn(){
     let user = sessionStorage.getItem('authenticaterUser');
     return !(user == null);
@@ -52,6 +49,7 @@ export class BasicAuthenticationService {
 
   logout(){
     sessionStorage.removeItem('authenticaterUser');
+    sessionStorage.removeItem('token');
   }
 }
 
