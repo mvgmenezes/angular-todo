@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 export class MessageBean {
@@ -21,7 +21,25 @@ export class WelcomeDataService {
   }
 
   executeHelloWorldServiceWithPathVariable(name){
-    return this.http.get<MessageBean>(`http://localhost:8080/hello-world-bean/path-variable/${name}`);
+
+    let basicAuthHeaderString = this.createBasicAuthenticationHttpHeader();
+    console.log(basicAuthHeaderString);
+    //cria o header com o token gerado.
+    let headers = new HttpHeaders({
+      Authorization: basicAuthHeaderString
+    })
+
+    //apos a implementacao do spring security, deve enviar o header com o token
+    return this.http.get<MessageBean>(`http://localhost:8080/hello-world-bean/path-variable/${name}` , 
+      {headers : headers});
+  }
+
+  //apos implementar o spring security agora para acessar a API é necessario enviar a senha
+  createBasicAuthenticationHttpHeader(){
+    let username = 'mmenezes'
+    let password = '123'
+    let basicAuthHeaderString = 'Basic ' + window.btoa(username + ':' + password);
+    return basicAuthHeaderString;
   }
 
 }
