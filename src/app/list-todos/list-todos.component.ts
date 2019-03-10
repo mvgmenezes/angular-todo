@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoDataService } from '../service/data/todo-data.service';
+import { Router } from '@angular/router';
 
 export class Todo{
   
@@ -37,7 +38,8 @@ export class ListTodosComponent implements OnInit {
       { id : 2, description: 'Become an Expert in Angular'},
       { id : 3, description: 'Visit India'}
    ] */
-  constructor(private todoDataService:TodoDataService) { }
+  constructor(private todoDataService:TodoDataService,
+    private router:Router) { }
 
   ngOnInit() {
     this.todoDataService.retriveAllTodos('mmenezes').subscribe(
@@ -67,6 +69,11 @@ export class ListTodosComponent implements OnInit {
       }
       
     );
+  }
+
+  updateTodo(id){
+    //direciona para a alteracao do todo
+    this.router.navigate(['todo', id])
   }
 
   refreshTodos(){

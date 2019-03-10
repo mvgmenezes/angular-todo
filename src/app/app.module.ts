@@ -12,6 +12,7 @@ import { MenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
 import { LogoutComponent } from './logout/logout.component';
 import { HttpClientModule } from '@angular/common/http';
+import { TodoComponent } from './todo/todo.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     ListTodosComponent,
     MenuComponent,
     FooterComponent,
-    LogoutComponent //quando se cria um novo componente (@Component) deve ser associado como um angular modulo(@NgModule)
+    LogoutComponent,
+    TodoComponent //quando se cria um novo componente (@Component) deve ser associado como um angular modulo(@NgModule)
   ],
   imports: [
     BrowserModule,
