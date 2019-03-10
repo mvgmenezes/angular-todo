@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HardcodedAuthenticationService } from '../service/hardcoded-authentication.service';
 import { BasicAuthenticationService } from '../service/basic-authentication.service';
+import { JWTAuthenticationService } from '../service/jwt-authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
   //Dependency Injection 
   constructor(private router: Router, 
     private hardcodedAuthenticationService: HardcodedAuthenticationService,
-    private basicAuthenticationService: BasicAuthenticationService) { 
+    private basicAuthenticationService: BasicAuthenticationService,
+    private jWTAuthenticationService: JWTAuthenticationService) { 
 
   }
 
@@ -45,19 +47,40 @@ export class LoginComponent implements OnInit {
     console.log(this.username);
     console.log(this.password);
 
-  this.basicAuthenticationService.executeAuthenticationService(this.username, this.password)
-    .subscribe(
-      data => {
-        console.log(data)
-        //redirect to welcome page
-        this.router.navigate(['welcome', this.username])
-        this.invalidLogin = false;
-      },
-      error => {
-        console.log(error)
-        this.invalidLogin = true;
-      }
-    )
+    this.basicAuthenticationService.executeAuthenticationService(this.username, this.password)
+      .subscribe(
+        data => {
+          console.log(data)
+          //redirect to welcome page
+          this.router.navigate(['welcome', this.username])
+          this.invalidLogin = false;
+        },
+        error => {
+          console.log(error)
+          this.invalidLogin = true;
+        }
+      )
+
+   
+  }
+
+  handleJWTAuthenticationLogin(){
+    console.log(this.username);
+    console.log(this.password);
+
+    this.jWTAuthenticationService.executeJWTAuthenticationService(this.username, this.password)
+      .subscribe(
+        data => {
+          console.log(data)
+          //redirect to welcome page
+          this.router.navigate(['welcome', this.username])
+          this.invalidLogin = false;
+        },
+        error => {
+          console.log(error)
+          this.invalidLogin = true;
+        }
+      )
 
    
   }

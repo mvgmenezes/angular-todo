@@ -8,8 +8,15 @@
         User Name: <input type="text" name="username" [(ngModel)]="username">
         Password: <input type="password" name="password" [(ngModel)]="password">
         <br>
-        <button (click)=handleBasciAuthLogin() class="btn btn-success"> Login </button>
-    
+        <!--Implementacao de uma autenticacao manual -->
+        <!-- <button (click)=handleLogin() class="btn btn-success"> Login Manual</button> -->
+        
+        <!--Implementacao de uma autenticacao usando o Basci Authenticatin do Spring Security no Backend -->
+        <!-- <button (click)=handleBasciAuthLogin() class="btn btn-success"> Login </button> -->
+
+        <!--Implementacao usando o JWT com Spring Boot no Backend -->
+        <button (click)=handleJWTAuthenticationLogin() class="btn btn-success"> Login </button>
+
     </div>
 
 </div>
