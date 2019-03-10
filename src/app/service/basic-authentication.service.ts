@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import {map} from 'rxjs/operators';
+import { API_URL } from '../app.constants';
+
+export const TOKEN = 'token'
+export const AUTHENTICATED_USER = 'authenticaterUser'
+
 
 //@injectable indica que é um servico e pode ser injetado em qualquer lugar que desejo usar
 @Injectable({
@@ -22,12 +27,12 @@ export class BasicAuthenticationService {
 
     //apos a implementacao do spring security, deve enviar o header com o token
     return this.http.get<AuthenticationBean>(
-      `http://localhost:8080/basicauth` , 
+      `${API_URL}/basicauth` , 
       {headers : headers}).pipe( //pipe permite executar um codigo se a execucao for ok
         map(
           data => {
-            sessionStorage.setItem('authenticaterUser', username); //https://www.w3schools.com/jsref/prop_win_sessionstorage.asp
-            sessionStorage.setItem('token', basicAuthHeaderString);
+            sessionStorage.setItem(AUTHENTICATED_USER, username); //https://www.w3schools.com/jsref/prop_win_sessionstorage.asp
+            sessionStorage.setItem(TOKEN, basicAuthHeaderString);
             return data;
           }
         )
@@ -35,21 +40,21 @@ export class BasicAuthenticationService {
   }
 
   getAuthenticatedUser(){
-    return sessionStorage.getItem('authenticaterUser');
+    return sessionStorage.getItem(AUTHENTICATED_USER);
   }
   getAuthenticatedToken(){
     if (this.getAuthenticatedUser())
-      return sessionStorage.getItem('token');
+      return sessionStorage.getItem(TOKEN);
   }
 
   isUserLoggedIn(){
-    let user = sessionStorage.getItem('authenticaterUser');
+    let user = sessionStorage.getItem(AUTHENTICATED_USER);
     return !(user == null);
   }
 
   logout(){
-    sessionStorage.removeItem('authenticaterUser');
-    sessionStorage.removeItem('token');
+    sessionStorage.removeItem(AUTHENTICATED_USER);
+    sessionStorage.removeItem(TOKEN);
   }
 }
 

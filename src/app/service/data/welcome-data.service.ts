@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { API_URL } from 'src/app/app.constants';
 
 
 export class MessageBean {
@@ -16,7 +17,7 @@ export class WelcomeDataService {
   ) { }
 
   executeHelloWorldBeanService(){
-    return this.http.get<MessageBean>('http://localhost:8080/hello-world-bean');
+    return this.http.get<MessageBean>(`${API_URL}/hello-world-bean`);
     //console.log(this.http.get('http://localhost:8080/hello-world-bean'));
   }
 
@@ -30,7 +31,7 @@ export class WelcomeDataService {
     // })
 
     //apos a implementacao do spring security, deve enviar o header com o token
-    return this.http.get<MessageBean>(`http://localhost:8080/hello-world-bean/path-variable/${name}` , 
+    return this.http.get<MessageBean>(`${API_URL}/hello-world-bean/path-variable/${name}` , 
       //{headers : headers}
       );
   }
